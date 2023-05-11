@@ -8,43 +8,40 @@ class Product extends Model {}
 
 // set up fields and rules for Product model
 Product.init(
-  {
-    category_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'category',
-        key: 'id', 
-    }
-  },
+  Product.init({
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
-    stock: {
-      type: DataTypes.INTEGER, 
-      allowNull: false, 
-      defaultValue: 10,
-      valide: {
-        isNumeric: true, 
-      } 
-    },
-    price: {
-      type: DataTypes.DECIMAL,
-      allowNull: false, 
-      validate: {
-        isDecimal: true,
+    category_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Category',
+        key: 'id'
       }
     },
     product_name: {
-      type: DataTypes.STRING, 
-      allowNull: false, 
+      type: DataTypes.STRING,
+      allowNull: false
     },
-    
-    
-    
-},
+    price: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+      validate: {
+        isDecimal: true
+      }
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 10,
+      validate: {
+        isNumeric: true
+      }
+    }
+  }),  
   {
     sequelize,
     timestamps: false,
